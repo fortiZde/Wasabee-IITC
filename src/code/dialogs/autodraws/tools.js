@@ -84,6 +84,17 @@ export const AutoDraw = WDialog.extend({
               zone.contains(p.latLng)
             );
           }
+          // Remove newly excluded portals
+          const excludes = new Set(
+            this._operation.markers
+              .filter(
+                (m) => m.type === WasabeeMarker.constants.MARKER_TYPE_EXCLUDE
+              )
+              .map((m) => m.portalId)
+          );
+          portalSet.portals = portalSet.portals.filter(
+            (p) => !excludes.has(p.id)
+          );
         }
       }
       portalSet.display.textContent = wX("PORTAL_COUNT", {
