@@ -408,6 +408,8 @@ function rebaseChanges<T, K extends keyof T>(
 /**
  * Change `follower` additions id to match `master` if equals.
  * This is used for links if portals are the same while IDs differ
+ * 
+ * Returns a map from the new id to the replaced one
  */
 function unifyAdditions<T, K extends keyof T, C extends Change<T, K>>(
   master: C[],
@@ -416,14 +418,17 @@ function unifyAdditions<T, K extends keyof T, C extends Change<T, K>>(
 ) {
   const masterAdd = master.filter((c) => c.type === "addition");
   const followerAdd = follower.filter((c) => c.type === "addition");
+  const idRewrite: Map<C['id'], C['id']> = new Map();
   for (const a of followerAdd) {
     for (const b of masterAdd) {
       if (eq(a.value, b.value)) {
+        idRewrite[b.id] = a.id;
         a.id = b.id;
         break;
       }
     }
   }
+  return idRewrite;
 }
 
 /**
@@ -447,7 +452,7 @@ export function computeRebaseChanges(
   const followerChanges = operationChanges(origin, follower);
 
   // use master ID if links are added at both ends
-  unifyAdditions(
+  const idRewrite = unifyAdditions(
     masterChanges.links,
     followerChanges.links,
     (a, b) =>
@@ -472,6 +477,7 @@ export function computeRebaseChanges(
       false
     ),
     zones: rebaseChanges(masterChanges.zones, followerChanges.zones, true),
+    rewrite: idRewrite,
   };
 
   // define conflict default resolution value
@@ -507,6 +513,12 @@ export function defaultChangeChoice(
   }
   for (const lc of changes.links.conflict) {
     lc.value = masterOrCurrent.getLinkById(lc.id as string);
+  }
+  // Second pass for link double additions whose id are replaced
+  for (const lc of changes.links.conflict) {
+    if (lc.type == "addition/addition" && !lc.value) {
+      lc.value = masterOrCurrent.getLinkById(changes.rewrite[lc.id] as string);
+    }
   }
 }
 
