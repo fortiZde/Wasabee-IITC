@@ -82,7 +82,13 @@ class OpSettingDialog extends WDialog {
     const buttonSection = L.DomUtil.create("div", "buttonset", tab);
     const buttons: { [label: string]: () => void } = {};
     buttons[wX("ADD_ZONE")] = () => {
-      if (getSelectedOperation().canWrite()) getSelectedOperation().addZone();
+      if (getSelectedOperation().canWrite()) {
+        try {
+          getSelectedOperation().addZone();
+        } catch (e) {
+          displayError("Wasabee: " + e.toString());
+        }
+      }
     };
     buttons[wX("SET_MARKERS_ZONES")] = () => {
       if (getSelectedOperation().canWrite()) setMarkersToZones();

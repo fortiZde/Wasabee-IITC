@@ -1283,7 +1283,18 @@ export default class WasabeeOp extends Evented implements IOperation {
     for (const z of this.zones) {
       ids.add(z.id);
     }
-    const newid = Math.max(...ids) + 1;
+    let newid = Math.max(...ids) + 1;
+    if (newid >= 32) {
+      for (let i = 1; i < 32; i++) {
+        if (!ids.has(i)) {
+          newid = i;
+          break;
+        }
+      }
+      if (newid >= 32) {
+        throw Error("Max number of zones exceeded (31)")
+      }
+    }
     this.zones.push(new WasabeeZone({ id: newid, name: `${newid}` }));
     this.update(true);
     return newid;
