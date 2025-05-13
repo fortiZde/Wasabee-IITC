@@ -261,6 +261,7 @@
   "LA DESC": "依據使用的 Link Amp 數量與類型，來源 Portal 的等級要求可能較低。",
   "LA": "L8+ 若干 LA",
   "LANG": "語言",
+  "lang.name": "繁體中文",
   "LEAVE": "離開",
   "LetDecayPortalAlert": "放任衰退",
   "LINK ASSIGNMENT": "指派連線至:",

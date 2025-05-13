@@ -7,6 +7,8 @@ import localeFrench from "./French.json";
 import localePortuguese from "./Portuguese.json";
 import localeRussian from "./Russian.json";
 import localeDanish from "./Danish.json";
+import localeChineseSimplified from "./Chinese Simplified.json";
+import localeChineseTraditional from "./Chinese Traditional.json";
 
 export default {
   german: localeGerman,
@@ -18,4 +20,6 @@ export default {
   portuguese: localePortuguese,
   russian: localeRussian,
   danish: localeDanish,
+  chineseSimplified: localeChineseSimplified,
+  chineseTraditional: localeChineseTraditional,
 };
