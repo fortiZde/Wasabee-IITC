@@ -262,6 +262,7 @@
   "LA DESC": "Le niveau nécessaire du portail peut être plus faible en fonction du type des Link Amp utilisés.",
   "LA": "L8+ quelques LinkAmp",
   "LANG": "Langue",
+  "lang.name": "Français",
   "LEAVE": "Quitter",
   "LetDecayPortalAlert": "À decay",
   "LINK ASSIGNMENT": "Affecter le lien à :",

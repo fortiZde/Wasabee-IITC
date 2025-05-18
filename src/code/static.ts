@@ -63,7 +63,7 @@ export const constants = {
   SEND_ANALYTICS_KEY: "wasabee-analytics",
   EXPERT_MODE_KEY: "wasabee-expert-mode",
   LANGUAGE_KEY: "wasabee-language",
-  DEFAULT_LANGUAGE: "English",
+  DEFAULT_LANGUAGE: "english",
   AGENT_INFO_KEY: "wasabee-me",
   LINK_SOURCE_KEY: "wasabee-link-source",
   ANCHOR_ONE_KEY: "wasabee-anchor-1",

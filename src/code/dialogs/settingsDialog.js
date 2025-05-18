@@ -68,12 +68,15 @@ const SettingsDialog = WDialog.extend({
 
     const strings = [];
     for (const l in window.plugin.wasabee.skin.strings) {
-      strings.push([l, l]);
+      strings.push([
+        window.plugin.wasabee.skin.strings[l]["lang.name"] || l,
+        l,
+      ]);
     }
     this._addSelect(
       container,
       wX("LANG"),
-      window.plugin.wasabee.static.constants.LANGUAGE_KEY,
+      statics.constants.LANGUAGE_KEY,
       strings,
       () => {
         // update everything -- if for no other reason than to provide a means for users to force-update everything
@@ -84,7 +87,7 @@ const SettingsDialog = WDialog.extend({
     this._addSelect(
       container,
       wX("SKIP_CONFIRM"),
-      window.plugin.wasabee.static.constants.SKIP_CONFIRM,
+      statics.constants.SKIP_CONFIRM,
       [
         [wX("SKIP_CONFIRM_NEVER"), "never"],
         [wX("SKIP_CONFIRM_ENTITY"), "entity"],
@@ -98,7 +101,7 @@ const SettingsDialog = WDialog.extend({
         container,
         wX("SEND LOCATION"),
         "wasabee-setting-sendloc",
-        window.plugin.wasabee.static.constants.SEND_LOCATION_KEY
+        statics.constants.SEND_LOCATION_KEY
       );
     }
 
@@ -106,7 +109,7 @@ const SettingsDialog = WDialog.extend({
       container,
       wX("MERGE ON UPDATE"),
       "wasabee-setting-rebase-update",
-      window.plugin.wasabee.static.constants.REBASE_UPDATE_KEY,
+      statics.constants.REBASE_UPDATE_KEY,
       null,
       true
     );
@@ -115,7 +118,7 @@ const SettingsDialog = WDialog.extend({
       container,
       wX("AUTOLOAD"),
       "wasabee-setting-autoload",
-      window.plugin.wasabee.static.constants.AUTO_LOAD_FAKED
+      statics.constants.AUTO_LOAD_FAKED
     );
 
     if (window.isSmartphone()) {
@@ -123,7 +126,7 @@ const SettingsDialog = WDialog.extend({
         container,
         wX("USE PANES ON MOBILE"),
         "wasabee-setting-usepanes",
-        window.plugin.wasabee.static.constants.USE_PANES
+        statics.constants.USE_PANES
       );
     }
 
@@ -131,26 +134,26 @@ const SettingsDialog = WDialog.extend({
       container,
       wX("dialog.settings.disable_live_updates"),
       "wasabee-setting-firebase",
-      window.plugin.wasabee.static.constants.FIREBASE_DISABLE
+      statics.constants.FIREBASE_DISABLE
     );
     this._addCheckBox(
       container,
       wX("SEND ANALYTICS"),
       "wasabee-setting-analytics",
-      window.plugin.wasabee.static.constants.SEND_ANALYTICS_KEY
+      statics.constants.SEND_ANALYTICS_KEY
     );
 
     this._addSelect(
       container,
       wX("AUTOLOAD_RATE"),
-      window.plugin.wasabee.static.constants.PORTAL_DETAIL_RATE_KEY,
+      statics.constants.PORTAL_DETAIL_RATE_KEY,
       [1, 100, 250, 500, 750, 1000].map((v) => [v, v])
     );
 
     this._addSelect(
       container,
       wX("TRAWL SKIP TILES"),
-      window.plugin.wasabee.static.constants.TRAWL_SKIP_STEPS,
+      statics.constants.TRAWL_SKIP_STEPS,
       [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((v) => [v, v])
     );
 
@@ -158,7 +161,7 @@ const SettingsDialog = WDialog.extend({
       container,
       wX("dialog.settings.populate_opportals"),
       "wasabee-setting-opportals",
-      window.plugin.wasabee.static.constants.POPULATE_OPPORTALS,
+      statics.constants.POPULATE_OPPORTALS,
       injectPortalsAsPlaceholders
     );
 
@@ -185,7 +188,7 @@ const SettingsDialog = WDialog.extend({
     const serverDialog = new PromptDialog({
       title: wX("CHANGE_WAS_SERVER"),
       label: wX("NEW_WAS_SERVER"),
-      suggestions: window.plugin.wasabee.static.publicServers.map((e) => ({
+      suggestions: statics.publicServers.map((e) => ({
         text: `${e.name} (${e.url})`,
         value: e.url,
       })),

@@ -258,6 +258,7 @@
   "LA DESC": "Depending on the number and type of Link Amps used, a lower source portal level might suffice.",
   "LA": "L8+ some LA",
   "LANG": "Language",
+  "lang.name": "English",
   "LEAVE": "Leave",
   "LetDecayPortalAlert": "Let Decay",
   "LINK ASSIGNMENT": "Assign link to:",

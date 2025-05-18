@@ -9,13 +9,13 @@ import localeRussian from "./Russian.json";
 import localeDanish from "./Danish.json";
 
 export default {
-  Deutsch: localeGerman,
-  Espanol: localeSpanish,
-  English: localeEnglish,
-  Italiano: localeItalian,
-  Tagalog: localeFilipino,
-  Français: localeFrench,
-  Português: localePortuguese,
-  Русский: localeRussian,
-  Dansk: localeDanish,
+  german: localeGerman,
+  spanish: localeSpanish,
+  english: localeEnglish,
+  italian: localeItalian,
+  filipino: localeFilipino,
+  french: localeFrench,
+  portuguese: localePortuguese,
+  russian: localeRussian,
+  danish: localeDanish,
 };
