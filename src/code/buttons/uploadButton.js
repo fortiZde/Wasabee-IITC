@@ -109,6 +109,7 @@ const UploadButton = WButton.extend({
       if (e instanceof ServerError) {
         if (e.code == 406) {
           displayError(`Upload Failed: ${e.toString()}`);
+          this.button.classList.remove("loading");
           return;
         }
       }
