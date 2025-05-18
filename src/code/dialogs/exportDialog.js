@@ -29,7 +29,7 @@ const ExportDialog = WDialog.extend({
     };
 
     this.createDialog({
-      title: wX("EXPORT") + operation.name,
+      title: wX("EXPORT OP TITLE", { opName: operation.name }),
       html: this._buildContent(operation),
       width: "auto",
       dialogClass: "export",

@@ -48,7 +48,6 @@ export function wX(
   key: "autodraw.multimax.result_both_side",
   data: { count1: number; count2: number }
 ): string;
-export function wX(key: "COMPLETED BY", data: { agentName: string }): string;
 export function wX(key: "CON_DEL", data: { opName: string }): string;
 export function wX(key: "DEFAULT OP NAME", data: { date: string }): string;
 export function wX(key: "DELETE_OP", data: { opName: string }): string;
@@ -145,6 +144,7 @@ export function wX(
 ): string;
 export function wX(key: "FAKED", data: { portalId: string }): string;
 export function wX(key: "HOURS", data: { hours: number }): string;
+export function wX(key: "EXPORT OP TITLE", data: { opName: string }): string;
 export function wX(key: "IMP_NOPE", data: { error: string }): string;
 export function wX(key: "IMPORT_OP_SUCCESS", data: { opName: string }): string;
 export function wX(key: "IMPORT_OP_TITLE", data: { date: string }): string;
@@ -161,11 +161,8 @@ export function wX(key: "MINUTES", data: { minutes: number }): string;
 export function wX(key: "MM_SET_KEYS_ZONE", data: { zoneName: string }): string;
 export function wX(key: "NO LONGER AVAILABLE", data: { error: string }): string;
 export function wX(key: "NOT LOGGED IN", data: { error: string }): string;
-export function wX(key: "OP DELETED", data: { opID: string }): string;
-export function wX(key: "OP PERM DENIED", data: { opID: string }): string;
 export function wX(key: "OP_CHECKLIST", data: { opName: string }): string;
 export function wX(key: "PERM DENIED", data: { error: string }): string;
-export function wX(key: "PERMS", data: { opName: string }): string;
 export function wX(
   key: "popup.anchor.keys",
   data: { onHand: number; required: number }
