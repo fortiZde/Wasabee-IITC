@@ -202,6 +202,19 @@ class OpSettingDialog extends WDialog {
       });
     }
 
+    if (selectedOp.canWrite()) {
+      const desc = L.DomUtil.create("div", "desc", tab);
+      desc.textContent = wX("dialog.op_settings.depends.desc");
+      const labelColor = L.DomUtil.create("label", null, tab);
+      labelColor.textContent = wX("dialog.op_settings.depends.clear");
+      const clearButton = L.DomUtil.create("button", null, tab);
+      clearButton.textContent = wX("dialog.op_settings.depends.clear.button");
+      L.DomEvent.on(clearButton, "click", () => {
+        const sop = getSelectedOperation();
+        sop.clearAllDependencies();
+      });
+    }
+
     return [head, tab];
   }
 

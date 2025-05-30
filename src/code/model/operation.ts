@@ -960,6 +960,16 @@ export default class WasabeeOp extends Evented implements IOperation {
     this.update(true);
   }
 
+  clearAllDependencies() {
+    for (const link of this.links) {
+      link.dependsOn = [];
+    }
+    for (const marker of this.markers) {
+      marker.dependsOn = [];
+    }
+    this.update(true);
+  }
+
   // save the op and redraw everything on the map
   update(updateLocalchanged = true) {
     // batchmode skips all this, for bulk adding links/etc
