@@ -1,20 +1,21 @@
-import { WDialog } from "../leafletClasses";
-import wX from "../wX";
-import MultimaxDialog from "./autodraws/multimaxDialog";
-import FanfieldDialog from "./autodraws/fanfield";
-import StarburstDialog from "./autodraws/starburst";
-import SaveLinksDialog from "./autodraws/saveLinks";
-import OnionfieldDialog from "./autodraws/onionfield";
-import HomogeneousDialog from "./autodraws/homogeneous";
-import MadridDialog from "./autodraws/madrid";
-import FlipFlopDialog from "./autodraws/flipflop";
-import statics from "../static";
+import { WDialog } from '../leafletClasses';
+import statics from '../static';
+import wX from '../wX';
+import FanfieldDialog from './autodraws/fanfield';
+import FlipFlopDialog from './autodraws/flipflop';
+import FlipFlopPlusDialog from './autodraws/flipflopPlus';
+import HomogeneousDialog from './autodraws/homogeneous';
+import MadridDialog from './autodraws/madrid';
+import MultimaxDialog from './autodraws/multimaxDialog';
+import OnionfieldDialog from './autodraws/onionfield';
+import SaveLinksDialog from './autodraws/saveLinks';
+import StarburstDialog from './autodraws/starburst';
 
 // This file documents the minimum requirements of a dialog in wasabee
 const AutodrawsDialog = WDialog.extend({
   // not strictly necessary, but good style
   statics: {
-    TYPE: "autodraws",
+    TYPE: 'autodraws',
   },
 
   needWritePermission: true,
@@ -23,7 +24,7 @@ const AutodrawsDialog = WDialog.extend({
     WDialog.prototype.initialize.call(this, options);
     this.menuItems = [
       {
-        text: wX("MM"),
+        text: wX('MM'),
         callback: () => {
           this.closeDialog();
           const mm = new MultimaxDialog();
@@ -31,7 +32,7 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("MAX"),
+        text: wX('MAX'),
         callback: () => {
           this.closeDialog();
           const ff = new FanfieldDialog();
@@ -39,7 +40,7 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("STARBURST"),
+        text: wX('STARBURST'),
         callback: () => {
           this.closeDialog();
           const sb = new StarburstDialog();
@@ -47,7 +48,7 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("ONION_WAS_TAKEN"),
+        text: wX('ONION_WAS_TAKEN'),
         callback: () => {
           this.closeDialog();
           const o = new OnionfieldDialog();
@@ -55,7 +56,7 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("HG"),
+        text: wX('HG'),
         callback: () => {
           this.closeDialog();
           const h = new HomogeneousDialog();
@@ -63,7 +64,7 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("MADRID_WAS_TAKEN"),
+        text: wX('MADRID_WAS_TAKEN'),
         callback: () => {
           this.closeDialog();
           const m = new MadridDialog();
@@ -71,19 +72,27 @@ const AutodrawsDialog = WDialog.extend({
         },
       },
       {
-        text: wX("SAVELINKS"),
+        text: wX('SAVELINKS'),
         callback: () => {
-          this._dialog.dialog("close");
+          this._dialog.dialog('close');
           const sl = new SaveLinksDialog();
           sl.enable();
         },
       },
       {
-        text: wX("FLIP_FLOP_NAME"),
+        text: wX('FLIP_FLOP_NAME'),
         callback: () => {
           this.closeDialog();
           const ff = new FlipFlopDialog();
           ff.enable();
+        },
+      },
+      {
+        text: wX('FLIP_FLOP_PLUS_NAME'),
+        callback: () => {
+          this.closeDialog();
+          const ffp = new FlipFlopPlusDialog();
+          ffp.enable();
         },
       },
     ];
@@ -95,28 +104,28 @@ const AutodrawsDialog = WDialog.extend({
   },
 
   _displayDialog: function () {
-    const html = L.DomUtil.create("div", "container");
+    const html = L.DomUtil.create('div', 'container');
     for (const i of this.menuItems) {
-      const link = L.DomUtil.create("a", null, html);
-      link.href = "#";
+      const link = L.DomUtil.create('a', null, html);
+      link.href = '#';
       link.textContent = i.text;
-      L.DomEvent.on(link, "click", L.DomEvent.stopPropagation)
-        .on(link, "mousedown", L.DomEvent.stopPropagation)
-        .on(link, "dblclick", L.DomEvent.stopPropagation)
-        .on(link, "click", L.DomEvent.preventDefault)
-        .on(link, "click", i.callback, this);
+      L.DomEvent.on(link, 'click', L.DomEvent.stopPropagation)
+        .on(link, 'mousedown', L.DomEvent.stopPropagation)
+        .on(link, 'dblclick', L.DomEvent.stopPropagation)
+        .on(link, 'click', L.DomEvent.preventDefault)
+        .on(link, 'click', i.callback, this);
     }
 
     const buttons = {};
-    buttons[wX("CLOSE")] = () => {
+    buttons[wX('CLOSE')] = () => {
       this.closeDialog();
     };
 
     this.createDialog({
-      title: wX("AUTODRAWS"),
+      title: wX('AUTODRAWS'),
       html: html,
-      width: "auto",
-      dialogClass: "autodraws",
+      width: 'auto',
+      dialogClass: 'autodraws',
       buttons: buttons,
       id: statics.dialogNames.autodraws,
     });
