@@ -113,7 +113,9 @@ const FlipFlopPlusDialog = AutoDraw.extend({
     const description2 = L.DomUtil.create('div', 'desc', container);
     description2.textContent = wX('FLIP_FLOP_PLUS_INSTRUCTION');
 
+
     this._addSelectSet(wX('AUTODRAW_PORTALS_SET'), 'set', container, 'all');
+    this._addSelectSet(wX('FLIP_FLOP_PLUS_ANCHOR_SET'), 'anchors', container, 'all');
 
     L.DomUtil.create('label', null, container).textContent = '#SBUL';
     this._nbSbul = L.DomUtil.create('input', null, container);
@@ -255,8 +257,9 @@ const FlipFlopPlusDialog = AutoDraw.extend({
 
     const maxSteps = 8 * (nbSbul + 1) - 2;
 
-    // All portals on screen are candidates for additional anchors
-    const allPortals = getAllPortalsOnScreen(this._operation);
+
+    // Use the selected anchor candidate set
+    const allPortals = this._portalSets['anchors']?.portals || getAllPortalsOnScreen(this._operation);
 
     this._progressDisplay.textContent = wX('FLIP_FLOP_PLUS_SEARCHING');
 
