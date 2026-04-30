@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - dev
+permissions:
+  contents: write
 jobs:
   build-and-deploy-dev:
     runs-on: ubuntu-latest
