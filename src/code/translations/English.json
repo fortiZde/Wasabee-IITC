@@ -232,6 +232,7 @@
   "FLIP_FLOP_FIND_ANCHORS": "Find other anchors",
   "FLIP_FLOP_PLUS_NAME": "Flip flop+",
   "FLIP_FLOP_PLUS_TITLE": "Flip flop+",
+  "FLIP_FLOP_PLUS_ANCHOR_SET": "Anchor Candidates",
   "FLIP_FLOP_PLUS_DESC": "Find the flipflop fan constellation that maximizes the number of additional anchors you can link from, using all available SBUL link slots.",
   "FLIP_FLOP_PLUS_INSTRUCTION": "Select a portal set, set SBUL count and press Draw. The algorithm will test all portals as potential anchors and find the configuration with the most additional anchors.",
   "FLIP_FLOP_PLUS_SEARCHING": "Searching for best configuration...",
