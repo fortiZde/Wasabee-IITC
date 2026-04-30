@@ -270,26 +270,29 @@ const FlipFlopPlusDialog = AutoDraw.extend({
   },
 
   _runSearch: function (portals, allPortals, maxSteps) {
+
     let bestResult = null;
     let bestAnchorCount = -1;
     let bestAnchor = null;
     let bestAnchors = [];
+    let maxLinksFound = -1;
+    const candidates = [];
 
     for (let idx = 0; idx < portals.length; idx++) {
       const anchor = portals[idx];
       const fan = this.findBestFanForAnchor(anchor, portals, maxSteps);
-
       if (!fan.two) continue;
-
-      // Only evaluate fans that meet minimum size
-      if (fan.steps.length + 2 < maxSteps + 2) {
-        // fan is too small if we require full use of SBULs
-        // allow it if it has at least some steps
-        if (fan.steps.length < 1) continue;
+      const links = fan.steps.length + 2;
+      if (links > maxLinksFound) {
+        maxLinksFound = links;
       }
+      candidates.push({ anchor, fan, links });
+    }
 
+    // Only consider constellations with the maximum possible links
+    for (const { anchor, fan, links } of candidates) {
+      if (links !== maxLinksFound) continue;
       const anchorCount = countAdditionalAnchors(anchor, fan, allPortals);
-
       if (anchorCount > bestAnchorCount) {
         bestAnchorCount = anchorCount;
         bestResult = fan;
