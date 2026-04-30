@@ -278,8 +278,10 @@ const FlipFlopPlusDialog = AutoDraw.extend({
     let maxLinksFound = -1;
     const candidates = [];
 
-    for (let idx = 0; idx < portals.length; idx++) {
-      const anchor = portals[idx];
+    // Try each anchor candidate from the anchors set (not the layers set)
+    for (let idx = 0; idx < allPortals.length; idx++) {
+      const anchor = allPortals[idx];
+      // Build the fan from the layers portal set
       const fan = this.findBestFanForAnchor(anchor, portals, maxSteps);
       if (!fan.two) continue;
       const links = fan.steps.length + 2;
